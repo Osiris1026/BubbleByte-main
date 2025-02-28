@@ -472,7 +472,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new SequentialCommandGroup(new InstantCommand(()-> s_Swerve.gyro.reset()), autoChooser.getSelected());
+        return new SequentialCommandGroup(new InstantCommand(()-> s_Swerve.gyro.reset()), Nest(),  autoChooser.getSelected());
         
     }
 }
