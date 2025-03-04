@@ -39,7 +39,7 @@ public class TeleopSwerve extends Command {
         double MaxHeight = Constants.ElevatorConstants.L4Pose;
         double Height = (MaxHeight - MinHeight) - (MathUtil.clamp(elevHeight.getAsDouble(), MinHeight, MaxHeight) - MinHeight);
         
-        double multi = MathUtil.applyDeadband(Height/(MaxHeight- MinHeight), Constants.Swerve.MIN_SPEED/Constants.Swerve.MAX_SPEED, 1);
+        double multi = MathUtil.clamp(Height/(MaxHeight- MinHeight), Constants.Swerve.MIN_SPEED/Constants.Swerve.MAX_SPEED, 1);
         /* Get Values, Deadband */
         if(overrideHeight.getAsBoolean()){
             multi = 1;

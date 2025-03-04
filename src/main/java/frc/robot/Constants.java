@@ -24,7 +24,7 @@ import frc.lib.util.COTSTalonFXSwerveConstants;
 import frc.lib.util.COTSTalonFXSwerveConstants.SDS.MK4i.driveRatios;
 import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
-    public static final double CONTROLLER_DEADBAND = 0.01;
+    public static final double CONTROLLER_DEADBAND = 0.00;
 
     
 
@@ -117,7 +117,7 @@ public final class Constants {
          * loop driving.
          * We found a small open loop ramp (0.25) helps with tread wear, tipping, etc
          */
-        public static final double OPEN_LOOP_RAMP = 0.25;
+        public static final double OPEN_LOOP_RAMP = 0.35;
         public static final double CLOSED_LOOP_RAMP = 0;
 
         public static final PIDConstants ANGLE_PID = new PIDConstants(FALCON_500_CONSTANTS.angleKP,
@@ -191,7 +191,7 @@ public final class Constants {
                 );
         //public static final Rotation2d NAVX_A = null;
 
-        public static final double MIN_SPEED = 0;
+        public static final double MIN_SPEED = 1;
 
     }
 
@@ -216,7 +216,7 @@ public final class Constants {
         // public static final double RightLiftPosInValue = -13;
         // public static final double RightLiftPosOutValue = 0;     
 
-        public static final int STATOR_CURRENT_LIMIT = 100;
+        public static final int STATOR_CURRENT_LIMIT = 200;
         public static final int CURRENT_LIMIT = 100;
         public static final boolean ENABLE_CURRENT_LIMIT = true;
         public static final boolean ENABLE_STATOR_CURRENT_LIMIT = true;
@@ -354,9 +354,9 @@ public final class Constants {
         public static final double Tolerance = 0.2;
         public static final boolean LimitEnable = true;
         public static final double ForwardLimit = 29.8;
-        public static final double ReverseLimit = 0.5;
+        public static final double ReverseLimit = 2;
         public static final double DefaultPose = 0;
-        public static final double L1Pose = 7;
+        public static final double L1Pose = 6;
         public static final double L2Pose = 13.7;
         public static final double L3Pose = 20.5;
         public static final double L4Pose = 29.5;
@@ -422,16 +422,16 @@ public final class Constants {
         public static final boolean ENABLE_CURRENT_LIMIT = true;
         public static final boolean ENABLE_STATOR_CURRENT_LIMIT = true;
         public static final boolean LimitEnable = true;
-        public static final double ForwardLimit = 5;
+        public static final double ForwardLimit = 15;
         public static final double ReverseLimit = 1.8;
         public static final double DefaultPose = 1.8;
         public static final double ReefPose = 4.8;
         public static final double IntakeSpeed = 0.4;
-        public static final double GroundPose = 4.8;//15;
+        public static final double GroundPose = 15;//15;//4.8
         public static final double OuttakePose = 3;
         public static final double OuttakeSpeed = 0.5;
         public static final double GearRatio = 1/50;
-        public static final double GroundOuttakePose = 3;//14;
+        public static final double GroundOuttakePose = 14;//14;
         public static final double Tolerance = 0.03;
         public static final double timeout = 0.8;
         public static double kP = 0.042;
