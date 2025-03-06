@@ -41,6 +41,7 @@ public class AlignCommand extends Command {
   DoubleSupplier TZ;
   DoubleSupplier RY;
   BooleanSupplier tv;
+  DoubleSupplier tx;
   Swerve s_Swerve;
   LimelightSubsystem l_LimelightSubsystem;
   Rotation2d headingprev;
@@ -55,6 +56,7 @@ public class AlignCommand extends Command {
     this.TZ = ()-> l_LimelightSubsystem.getTargetPos(2);
     this.RY = ()-> l_LimelightSubsystem.getTargetPos(4);
     this.tv = ()-> l_LimelightSubsystem.IsTargetAvailable();
+    this.tx = ()-> l_LimelightSubsystem.getTargetX();
     this.s_Swerve = s_Swerve;
     this.l_LimelightSubsystem = l_LimelightSubsystem;
     
@@ -85,7 +87,7 @@ public class AlignCommand extends Command {
     RotatePID.setTolerance(1);
     
 
-    double x =  l_LimelightSubsystem.getTargetPos(0);
+    double x =  l_LimelightSubsystem.getCameraPos(0);
     boolean Target =  l_LimelightSubsystem.IsTargetAvailable();
     double value = TranslatePID.calculate(x);
     //double result = Math.copySign(Math.abs(value) + 0.01, value); 
@@ -93,24 +95,37 @@ public class AlignCommand extends Command {
     SmartDashboard.putNumber("TPID", value);
     SmartDashboard.putNumber("TTX", x);
 
-    double z =  l_LimelightSubsystem.getTargetPos(2);
+    double z =  l_LimelightSubsystem.getCameraPos(2);
     double value1 = StrafePID.calculate(z);
     //double result1 = Math.copySign(Math.abs(value1) + 0.0955, value1); 
     double Strafe = (Target && !StrafePID.atSetpoint()? MathUtil.clamp(value1, -0.87, 0.87) : 0);
     SmartDashboard.putNumber("SPID", value1);
     SmartDashboard.putNumber("STZ", z);
 
+    //double angle = Math.tanh(x/z);
+
     double a =  l_LimelightSubsystem.getTargetPos(4);
     double value2 = RotatePID.calculate(a);
     //double result2 = Math.copySign(Math.abs(value2) + 0.0955, value2); 
-    double Rotate = (Target && !RotatePID.atSetpoint() ? MathUtil.clamp(value2, -0.57, 0.57) : 0);
+    double Rotate = (Target && !RotatePID.atSetpoint() ? MathUtil.clamp(value2, -0.17, 0.17) : 0);
+    // if(Rotate < 0){
+    //   if(tx.getAsDouble() > 17){
+    //     Rotate = 0;
+    //   }
+    // }
+    // if(Rotate > 0){
+    //   if(tx.getAsDouble() < -12){
+    //     Rotate = 0;
+    //   }
+    // }
     SmartDashboard.putNumber("RRY", a);
     SmartDashboard.putNumber("RPID", Rotate);
     s_Swerve.drive(
                 new Translation2d(-Strafe, Tranlate).times(Constants.Swerve.MAX_SPEED),
-                Rotate * Constants.Swerve.MAX_ANGULAR_VELOCITY,
+                Rotate* (1 -  Math.abs(Tranlate))* (1 -  Math.abs(Strafe)) * Constants.Swerve.MAX_ANGULAR_VELOCITY,
                 !true,
                 true);
+                SmartDashboard.putNumber("RRPID", Rotate* (1 + Strafe));
 
   }
 

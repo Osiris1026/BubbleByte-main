@@ -24,16 +24,12 @@ import frc.lib.util.COTSTalonFXSwerveConstants;
 import frc.lib.util.COTSTalonFXSwerveConstants.SDS.MK4i.driveRatios;
 import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
-    public static final double CONTROLLER_DEADBAND = 0.00;
-
-    
+    public static final double CONTROLLER_DEADBAND = 0.05;
 
     /**
      * Corresponds to port zero on the Roborio DIO. 
      */
     public static final int LIMIT_SWITCH_INTAKE = 9;
-
-
 
     public static final int BEAM_LED_ID = 1;
 
@@ -384,7 +380,7 @@ public final class Constants {
         public static final double ConversionConstant = 0.0;
         public static final InvertedValue MotorInverted = InvertedValue.Clockwise_Positive;
         public static final NeutralModeValue MotorMode = NeutralModeValue.Brake;
-        public static final int STATOR_CURRENT_LIMIT = 60;
+        public static final int STATOR_CURRENT_LIMIT = 80;
         public static final int CURRENT_LIMIT = 60;
         public static final boolean ENABLE_CURRENT_LIMIT = true;
         public static final boolean ENABLE_STATOR_CURRENT_LIMIT = true;
@@ -443,14 +439,14 @@ public final class Constants {
 
         public static final double rightRY = 3;
         public static final double rightX = -0.12;
-        public static final double rightZ = .52;
+        public static final double rightZ = .54;
 
         public static final double leftRY = 0;
         public static final double leftX = 0.20;
-        public static final double leftZ = 0.52;
+        public static final double leftZ = 0.54;
         public static double centerRY = 1;
         public static double centerTX = 0.0;
-        public static double centerTZ = 0.52;
+        public static double centerTZ = 0.54;
     }
 
 
