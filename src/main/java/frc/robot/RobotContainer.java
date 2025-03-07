@@ -137,7 +137,7 @@ public class RobotContainer {
     public Command Nest() {
         return new ParallelCommandGroup(
             new AlgaeArmPID(a_AlgaeArmSubsystem, Constants.AlgaeArmConstants.DefaultPose),
-            new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.DefaultPose),
+            Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.DefaultPose, true), e_ElevatorSubsytem),
             new ClimbPID(c_ClimbSubsystem, Constants.ClimberConstants.DefaultPose)
         );
     }
@@ -229,6 +229,21 @@ public class RobotContainer {
                         s_Swerve); 
     }
 
+    public Command AlignRightOffset_Driver(double xoff, double zoff, double ryoff){
+        return new AlignCommand(l_LimelightSubsystem, 
+                        Constants.AlignConstants.rightX + xoff,
+                        Constants.AlignConstants.rightZ + zoff, 
+                        Constants.AlignConstants.rightRY + ryoff, 
+                        s_Swerve); 
+                    }
+    public Command AlignLeftOffset_Driver(double xoff, double zoff, double ryoff){
+        return new AlignCommand(l_LimelightSubsystem, 
+                        Constants.AlignConstants.leftX + xoff,
+                        Constants.AlignConstants.leftZ + zoff, 
+                        Constants.AlignConstants.leftRY + ryoff, 
+                        s_Swerve); 
+    }
+
     public Command AlignCenter_Driver(){
         return new AlignCommand(l_LimelightSubsystem, 
                         Constants.AlignConstants.centerTX,
@@ -315,22 +330,22 @@ public class RobotContainer {
     }
 
     public Command L1(){
-        return new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.L1Pose);
+        return Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.L1Pose, true), e_ElevatorSubsytem);
     }
 
     public Command L2(){
-        return new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.L2Pose);
+        return Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.L2Pose, true), e_ElevatorSubsytem);
     }
 
     public Command L3(){
-        return new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.L3Pose);
+        return Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.L3Pose, true), e_ElevatorSubsytem);
     }
 
     public Command L4(){
-        return new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.L4Pose);
+        return Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.L4Pose, true), e_ElevatorSubsytem);
     }
     public Command L0(){
-        return new ElevatorPID(e_ElevatorSubsytem, Constants.ElevatorConstants.L0Pose);
+        return Commands.run(()-> e_ElevatorSubsytem.set(Constants.ElevatorConstants.L0Pose, true), e_ElevatorSubsytem);
     }
 
     public Command A1(){
@@ -417,7 +432,7 @@ public class RobotContainer {
         c_ClimbSubsystem.setDefaultCommand(c_ClimbSubsystem.run(()-> -codriver.getRawAxis(0) * Constants.ClimberConstants.MaxLiftSpeed));
         c_CoralIntakeSubsystem.setDefaultCommand(c_CoralIntakeSubsystem.run(()-> -codriver.getRawAxis(2)));
         a_AlgaeIntakeSubsystem.setDefaultCommand(a_AlgaeIntakeSubsystem.run(()-> -codriver.getRawAxis(3)));
-        e_ElevatorSubsytem.setDefaultCommand(e_ElevatorSubsytem.run(()-> (-codriver.getRawAxis(5) + Constants.ElevatorConstants.StallSpeed)));
+        e_ElevatorSubsytem.setDefaultCommand(e_ElevatorSubsytem.run((()-> -codriver.getRawAxis(5))));
         
 
         configureButtonBindings();
@@ -465,15 +480,15 @@ public class RobotContainer {
         // start.whileFalse(e_ElevatorSubsytem.run(() -> e_ElevatorSubsytem.set2(0)));
 
         align.whileTrue(new ParallelCommandGroup(
-                 new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), AlignCenter_Driver()));
+                 new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)),new SequentialCommandGroup( AlignCenter_Driver())));
 
         align.onFalse(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0))));
         // follow.whileTrue(new SequentialCommandGroup(
         //     new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), AutoFollow_Driver(0.3)));
 
         // follow.onFalse(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0))));
-        alignLeft.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), AlignLeft_Driver()));
-        alignRight.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), AlignRight_Driver()));
+        alignLeft.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), new SequentialCommandGroup( AlignLeft_Driver())));
+        alignRight.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> l_LimelightSubsystem.setCamMode(0)), new SequentialCommandGroup( AlignRight_Driver())));
         //resetpose.onTrue(new InstantCommand(()->field.setRobotPose(0, 0, s_Swerve.getHeading())));
         // leftstation.whileTrue(new SequentialCommandGroup(new FollowPath(s_Swerve, "PathTest")));
         // rightstation.whileTrue(new SequentialCommandGroup(new FollowPath(s_Swerve, "PathTest")));

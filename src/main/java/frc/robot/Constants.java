@@ -351,7 +351,7 @@ public final class Constants {
         public static final boolean LimitEnable = true;
         public static final double ForwardLimit = 29.8;
         public static final double ReverseLimit = 2;
-        public static final double DefaultPose = 0;
+        public static final double DefaultPose = 0.5;
         public static final double L1Pose = 6;
         public static final double L2Pose = 13.7;
         public static final double L3Pose = 20.5;
@@ -367,8 +367,8 @@ public final class Constants {
         public static final double A1Timeout = 1.2;
         public static final double A2Timeout = 2;
 
-        public static final double MaxVelocity = 27;
-        public static final double MaxAcceleration = 62;
+        public static final double MaxVelocity = 25;
+        public static final double MaxAcceleration = 70;
         public static final double L4Timeout = 2.1;
         public static final double L3Timeout = 1.7;
         public static final double L2Timeout = 1.1;

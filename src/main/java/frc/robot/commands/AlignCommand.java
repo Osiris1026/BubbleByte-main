@@ -78,6 +78,10 @@ public class AlignCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double Tx =  l_LimelightSubsystem.getCameraPos(0)*(Math.cos(l_LimelightSubsystem.getCameraPos(0)));
+    double Tz =  l_LimelightSubsystem.getCameraPos(2)*(1/Math.cos(l_LimelightSubsystem.getCameraPos(0)));
+    double distance = new Translation2d(Tx, Tz).getDistance(new Translation2d(x, z));
+    // boolean inzone = Math.abs(Tx) < 0.3;
     
     TranslatePID.setSetpoint(x);
     TranslatePID.setTolerance(0.01);
@@ -85,36 +89,42 @@ public class AlignCommand extends Command {
     StrafePID.setTolerance(0.01);
     RotatePID.setSetpoint(ry);
     RotatePID.setTolerance(1);
+
     
 
-    double x =  l_LimelightSubsystem.getCameraPos(0);
+    SmartDashboard.putNumber("distance", distance);
+    
+
+    
     boolean Target =  l_LimelightSubsystem.IsTargetAvailable();
-    double value = TranslatePID.calculate(x);
+    double value = TranslatePID.calculate(Tx);
     //double result = Math.copySign(Math.abs(value) + 0.01, value); 
     double Tranlate = (Target && !TranslatePID.atSetpoint()  ? MathUtil.clamp(value, -0.87, 0.87) : 0);
     SmartDashboard.putNumber("TPID", value);
     SmartDashboard.putNumber("TTX", x);
 
-    double z =  l_LimelightSubsystem.getCameraPos(2);
-    double value1 = StrafePID.calculate(z);
+    
+    double value1 = StrafePID.calculate(Tz);
     //double result1 = Math.copySign(Math.abs(value1) + 0.0955, value1); 
     double Strafe = (Target && !StrafePID.atSetpoint()? MathUtil.clamp(value1, -0.87, 0.87) : 0);
     SmartDashboard.putNumber("SPID", value1);
     SmartDashboard.putNumber("STZ", z);
-
+    //Cameron Trux Team 702 :3
     //double angle = Math.tanh(x/z);
 
     double a =  l_LimelightSubsystem.getTargetPos(4);
-    double value2 = RotatePID.calculate(a);
+    double tx = l_LimelightSubsystem.getTargetX();
+    double value2 =  RotatePID.calculate(a);
     //double result2 = Math.copySign(Math.abs(value2) + 0.0955, value2); 
     double Rotate = (Target && !RotatePID.atSetpoint() ? MathUtil.clamp(value2, -0.17, 0.17) : 0);
-    // if(Rotate < 0){
-    //   if(tx.getAsDouble() > 17){
+    
+    // if(Rotate > 0){
+    //   if(tx.getAsDouble() > 12){
     //     Rotate = 0;
     //   }
     // }
-    // if(Rotate > 0){
-    //   if(tx.getAsDouble() < -12){
+    // if(Rotate < 0){
+    //   if(tx.getAsDouble() < -17){
     //     Rotate = 0;
     //   }
     // }
@@ -122,7 +132,7 @@ public class AlignCommand extends Command {
     SmartDashboard.putNumber("RPID", Rotate);
     s_Swerve.drive(
                 new Translation2d(-Strafe, Tranlate).times(Constants.Swerve.MAX_SPEED),
-                Rotate* (1 -  Math.abs(Tranlate))* (1 -  Math.abs(Strafe)) * Constants.Swerve.MAX_ANGULAR_VELOCITY,
+                Rotate * Constants.Swerve.MAX_ANGULAR_VELOCITY,
                 !true,
                 true);
                 SmartDashboard.putNumber("RRPID", Rotate* (1 + Strafe));
