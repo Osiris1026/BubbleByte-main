@@ -163,6 +163,12 @@
                 "data": {
                   "name": "Nest"
                 }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "LimitSwitchDeadline"
+                }
               }
             ]
           }

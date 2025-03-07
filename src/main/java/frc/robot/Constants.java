@@ -67,7 +67,7 @@ public final class Constants {
          */
         public static final double DRIVEBASE_RADIUS = DRIVEBASE_DIAMETER / 2f;
 
-        public static final double WHEEL_CIRCUMFERENCE = 0.048 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
+        public static final double WHEEL_CIRCUMFERENCE = 0.050 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
 
         public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(
                 new Translation2d(BASE_WIDTH / 2.0, TRACK_WIDTH / 2.0),

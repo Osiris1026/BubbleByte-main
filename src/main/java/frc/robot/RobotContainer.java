@@ -407,7 +407,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("A1", A1());
         NamedCommands.registerCommand("A2", A2());
 
-
+        NamedCommands.registerCommand("LimitSwitchDeadline", LimitSwitchDeadline());
         NamedCommands.registerCommand("L1Deadline", L1Deadline());
         NamedCommands.registerCommand("L2Deadline", L2Deadline());
         NamedCommands.registerCommand("L3Deadline", L3Deadline());
