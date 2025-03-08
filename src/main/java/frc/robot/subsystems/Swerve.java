@@ -34,9 +34,11 @@ public class Swerve extends SubsystemBase {
     public AHRS gyro;
     public  RobotConfig config;
     public BackLimelightSubsystem l_LimelightBackSubsystem;
+    public LimelightSubsystem l_LimelightSubsystem;
 
-    public Swerve(BackLimelightSubsystem l_LimelightBackSubsystem) {
+    public Swerve(BackLimelightSubsystem l_LimelightBackSubsystem, LimelightSubsystem l_LimelightSubsystem) {
         this.l_LimelightBackSubsystem = l_LimelightBackSubsystem;
+        this.l_LimelightSubsystem = l_LimelightSubsystem;
         gyro = new AHRS( NavXComType.kMXP_SPI);
         
         gyro.reset();
@@ -198,16 +200,24 @@ public class Swerve extends SubsystemBase {
         }
     }
     public void updatePoseLimelight(){
-        Pose2d pose = l_LimelightBackSubsystem.getBotPose2d();
-        if(pose != null && pose.getX() != 0 && pose.getY() != 0){
-            setPose(new Pose2d(pose.getX(), pose.getY(), getHeading()));
+        Pose2d poseb = l_LimelightBackSubsystem.getBotPose2d();
+        Pose2d posef = l_LimelightSubsystem.getBotPose2d();
+        if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0 && posef != null && posef.getX() != 0 && posef.getY() != 0){
+            setPose(new Pose2d((poseb.getX() + posef.getX())/2, (poseb.getY() + posef.getY())/2, getHeading()));
+        }else{
+            if(posef != null && posef.getX() != 0 && posef.getY() != 0){
+                setPose(new Pose2d(posef.getX(), posef.getY(), getHeading()));
+            }
+            if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0){
+                setPose(new Pose2d(poseb.getX(), poseb.getY(), getHeading()));
+            }
         }
     }
 
     @Override
     public void periodic() {
         swerveOdometry.update(getGyroYaw(), getModulePositions());
-        //updatePoseLimelight();
+        updatePoseLimelight();
         
         SmartDashboard.putNumber("Acc",this.getAcc());
         SmartDashboard.putNumber("gyrow", gyro.getYaw());

@@ -78,8 +78,8 @@ public class AlignCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double Tx =  l_LimelightSubsystem.getCameraPos(0)*(Math.cos(l_LimelightSubsystem.getCameraPos(0)));
-    double Tz =  l_LimelightSubsystem.getCameraPos(2)*(1/Math.cos(l_LimelightSubsystem.getCameraPos(0)));
+    double Tx =  l_LimelightSubsystem.getCameraPos(0);
+    double Tz =  l_LimelightSubsystem.getCameraPos(2);
     double distance = new Translation2d(Tx, Tz).getDistance(new Translation2d(x, z));
     // boolean inzone = Math.abs(Tx) < 0.3;
     
@@ -99,14 +99,14 @@ public class AlignCommand extends Command {
     boolean Target =  l_LimelightSubsystem.IsTargetAvailable();
     double value = TranslatePID.calculate(Tx);
     //double result = Math.copySign(Math.abs(value) + 0.01, value); 
-    double Tranlate = (Target && !TranslatePID.atSetpoint()  ? MathUtil.clamp(value, -0.87, 0.87) : 0);
+    double Tranlate = (Target && !TranslatePID.atSetpoint()  ? MathUtil.clamp(value, -0.47, 0.47) : 0);
     SmartDashboard.putNumber("TPID", value);
     SmartDashboard.putNumber("TTX", x);
 
     
     double value1 = StrafePID.calculate(Tz);
     //double result1 = Math.copySign(Math.abs(value1) + 0.0955, value1); 
-    double Strafe = (Target && !StrafePID.atSetpoint()? MathUtil.clamp(value1, -0.87, 0.87) : 0);
+    double Strafe = (Target && !StrafePID.atSetpoint()? MathUtil.clamp(value1, -0.47, 0.47) : 0);
     SmartDashboard.putNumber("SPID", value1);
     SmartDashboard.putNumber("STZ", z);
     //Cameron Trux Team 702 :3

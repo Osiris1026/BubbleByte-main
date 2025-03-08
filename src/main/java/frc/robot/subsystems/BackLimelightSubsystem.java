@@ -29,6 +29,7 @@ public class BackLimelightSubsystem extends SubsystemBase {
   public NetworkTableEntry camMode;
   public NetworkTableEntry targetpose_cameraspace;
   public NetworkTableEntry camerapose_targetspace;
+  public NetworkTableEntry botpose_orb;
   
 
   /** Creates a new LimelightSubsystem. */
@@ -47,6 +48,7 @@ public class BackLimelightSubsystem extends SubsystemBase {
     botpose_wpired = table.getEntry("botpose_wpired");
     targetpose_cameraspace = table.getEntry("targetpose_cameraspace");
     camerapose_targetspace = table.getEntry("targetpose_cameraspace");
+    botpose_orb = table.getEntry("botpose_orb");
 
   }
 

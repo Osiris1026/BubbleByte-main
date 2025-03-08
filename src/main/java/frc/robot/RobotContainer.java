@@ -102,7 +102,7 @@ public class RobotContainer {
     /* Subsystems */
     private final LimelightSubsystem l_LimelightSubsystem = new LimelightSubsystem();
     private final BackLimelightSubsystem l_LimelightBackSubsystem = new BackLimelightSubsystem();
-    private final Swerve s_Swerve = new Swerve(l_LimelightBackSubsystem);
+    private final Swerve s_Swerve = new Swerve(l_LimelightBackSubsystem, l_LimelightSubsystem);
     
     private final AlgaeArmSubsystem a_AlgaeArmSubsystem = new AlgaeArmSubsystem();
     private final AlgaeIntakeSubsystem a_AlgaeIntakeSubsystem = new AlgaeIntakeSubsystem();
@@ -526,7 +526,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new SequentialCommandGroup(new InstantCommand(()-> s_Swerve.gyro.reset()), Nest().withTimeout(0.5),  autoChooser.getSelected());
+        return new SequentialCommandGroup(new InstantCommand(()-> s_Swerve.gyro.reset()), Nest().withTimeout(0.2),  autoChooser.getSelected());
         
     }
 }

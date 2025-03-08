@@ -67,7 +67,7 @@ public final class Constants {
          */
         public static final double DRIVEBASE_RADIUS = DRIVEBASE_DIAMETER / 2f;
 
-        public static final double WHEEL_CIRCUMFERENCE = 0.050 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
+        public static final double WHEEL_CIRCUMFERENCE = 0.051 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
 
         public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(
                 new Translation2d(BASE_WIDTH / 2.0, TRACK_WIDTH / 2.0),
@@ -83,7 +83,7 @@ public final class Constants {
 //   new DifferentialDriveKinematics(Units.inchesToMeters(27.0));
 
         /* Module Gear Ratios */
-        public static final double DRIVE_GEAR_RATIO = 5.9;//L1 7.13 - L2 5.9 - L3 5.36
+        public static final double DRIVE_GEAR_RATIO = 5.36;//L1 7.13 - L2 5.9 - L3 5.36
         public static final double ANGLE_GEAR_RATIO = 18.75;
 
         public static final InvertedValue ANGLE_MOTOR_INVERT = FALCON_500_CONSTANTS.angleMotorInvert;
@@ -251,7 +251,7 @@ public final class Constants {
     }
 
     public static final class AutoFollowConstants {
-        public static final double kP = 0.271;
+        public static final double kP = 0.471;
         public static final double kI = 0;
         public static final double kD = 0.0;
 
@@ -275,8 +275,8 @@ public final class Constants {
     }
 
     public static final class AutoTranslateConstants {
-        public static final double kP = 0.05471;
-        public static final double kI = 0.000665;
+        public static final double kP = 1.17471;
+        public static final double kI = 0.0665;
         public static final double kD = 0.001333;
 
        
@@ -367,8 +367,8 @@ public final class Constants {
         public static final double A1Timeout = 1.2;
         public static final double A2Timeout = 2;
 
-        public static final double MaxVelocity = 25;
-        public static final double MaxAcceleration = 70;
+        public static final double MaxVelocity = 20;
+        public static final double MaxAcceleration = 87;
         public static final double L4Timeout = 2.1;
         public static final double L3Timeout = 1.7;
         public static final double L2Timeout = 1.1;
@@ -439,14 +439,14 @@ public final class Constants {
 
         public static final double rightRY = 3;
         public static final double rightX = -0.12;
-        public static final double rightZ = .54;
+        public static final double rightZ = .52;
 
         public static final double leftRY = 0;
         public static final double leftX = 0.20;
-        public static final double leftZ = 0.54;
+        public static final double leftZ = 0.52;
         public static double centerRY = 1;
         public static double centerTX = 0.0;
-        public static double centerTZ = 0.54;
+        public static double centerTZ = 0.52;
     }
 
 

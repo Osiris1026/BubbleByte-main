@@ -29,6 +29,7 @@ public class LimelightSubsystem extends SubsystemBase {
   public NetworkTableEntry camMode;
   public NetworkTableEntry targetpose_cameraspace;
   public NetworkTableEntry camerapose_targetspace;
+  public NetworkTableEntry botpose_orb;
 
   /** Creates a new LimelightSubsystem. */
   public LimelightSubsystem() {
@@ -46,7 +47,11 @@ public class LimelightSubsystem extends SubsystemBase {
     botpose_wpired = table.getEntry("botpose_wpired");
     targetpose_cameraspace = table.getEntry("targetpose_cameraspace");
     camerapose_targetspace = table.getEntry("targetpose_cameraspace");
+    botpose_orb = table.getEntry("botpose_orb");
 
+    NetworkTableInstance.getDefault().getTable("limelight-front").getEntry("imumode_set").setNumber(0);
+    
+    
   }
 
   public double getTargetX() {
@@ -88,16 +93,17 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   public double[] getBotPoseTeamRelative() {
-    var alliance = DriverStation.getAlliance();
-      if (alliance.isPresent()) {
-        if(alliance.get() == DriverStation.Alliance.Red){
+    return botpose_wpiblue.getDoubleArray(new double[7]);
+    // var alliance = DriverStation.getAlliance();
+    //   if (alliance.isPresent()) {
+    //     if(alliance.get() == DriverStation.Alliance.Red){
           
-          return botpose_wpired.getDoubleArray(new double[7]);
-        }else{
-          return botpose_wpiblue.getDoubleArray(new double[7]);
-        }
-      }
-      return new double[7];
+    //       return botpose_wpired.getDoubleArray(new double[7]);
+    //     }else{
+    //       return botpose_wpiblue.getDoubleArray(new double[7]);
+    //     }
+    //   }
+    //   return new double[7];
   }
 
   public Pose2d getBotPose2d(){
@@ -111,6 +117,8 @@ public class LimelightSubsystem extends SubsystemBase {
   //       : botpose_wpiblue.getDoubleArray(new double[6]);
   //   return pose[1];
   // }
+
+  
 
   public double getTargetPos(int value){
     double pos[] = targetpose_cameraspace.getDoubleArray(new double[6]);
