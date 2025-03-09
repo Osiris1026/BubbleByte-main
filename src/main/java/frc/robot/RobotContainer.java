@@ -419,6 +419,9 @@ public class RobotContainer {
         NamedCommands.registerCommand("CoralIntake", CoralIntake());
         NamedCommands.registerCommand("AlgaeOuttake", AlgaeOuttake());
         NamedCommands.registerCommand("Nest", Nest());
+        NamedCommands.registerCommand("Cpose", new InstantCommand(()-> s_Swerve.setPoseToReef("c")));
+        NamedCommands.registerCommand("Dpose", new InstantCommand(()-> s_Swerve.setPoseToReef("d")));
+        NamedCommands.registerCommand("Epose", new InstantCommand(()-> s_Swerve.setPoseToReef("e")));
 
         s_Swerve.setDefaultCommand(new TeleopSwerve(s_Swerve, 
         ()-> -driver.getRawAxis(1), 
@@ -526,7 +529,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new SequentialCommandGroup(new InstantCommand(()-> s_Swerve.gyro.reset()), Nest().withTimeout(0.2),  autoChooser.getSelected());
+        return new SequentialCommandGroup(autoChooser.getSelected());
         
     }
 }

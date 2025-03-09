@@ -147,5 +147,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
     SmartDashboard.putNumber("tclass", getClassifier());
     SmartDashboard.putNumber("BotPoseX", getBotPoseX());
+    SmartDashboard.getNumberArray("Limelightposeeeee", getBotPoseTeamRelative());
+    SmartDashboard.getNumber("LimelightposeX", getBotPose2d()== null? 5: getBotPose2d().getX());
   }
 }

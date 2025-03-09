@@ -67,7 +67,7 @@ public final class Constants {
          */
         public static final double DRIVEBASE_RADIUS = DRIVEBASE_DIAMETER / 2f;
 
-        public static final double WHEEL_CIRCUMFERENCE = 0.051 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
+        public static final double WHEEL_CIRCUMFERENCE = 0.050 * Math.PI * 2;///KRAKEN_X60_CONSTANTS.wheelCircumference;
 
         public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(
                 new Translation2d(BASE_WIDTH / 2.0, TRACK_WIDTH / 2.0),
@@ -179,7 +179,7 @@ public final class Constants {
                     canCoderID, angleOffset);
         }
         public static final PPHolonomicDriveController PATHPLANNER_FOLLOWER_CONFIG = new PPHolonomicDriveController(
-                new PIDConstants(5, 3, 0), 
+                new PIDConstants(5.2, 3, 0), 
                 new PIDConstants(3, 0, 0)
                 // MAX_SPEED,
                 // DRIVEBASE_RADIUS,
@@ -221,14 +221,14 @@ public final class Constants {
 
         public static final boolean LimitEnable = true;
 
-        public static final double ReverseLimit = -85;
+        public static final double ReverseLimit = -92;
 
         public static final double DefaultPose = 0;
 
 
         public static final double OutPose = 90;
 
-        public static final double InPose = -80;
+        public static final double InPose = -120;
 
         public static final double GearRatio = 1/338.5;
 
@@ -361,7 +361,7 @@ public final class Constants {
         public static final double MaxSpeed = 0.3;
         public static final double MinSpeed = -0.45;
         public static final double ClimbLimit = -1;
-        public static final double L0Pose = 6.2;
+        public static final double L0Pose = 5.4;
         public static final double A1Pose = 4;
         public static final double A2Pose = 11;
         public static final double A1Timeout = 1.2;
@@ -404,8 +404,8 @@ public final class Constants {
         public static final double OuttakeSpeed = -0.3;
         public static final ResetMode Reset = ResetMode.kResetSafeParameters;
         public static final PersistMode Persist = PersistMode.kNoPersistParameters;
-        public static final double IntakeSpeed = -0.4;
-        public static final double outtakeTime = 0.7;
+        public static final double IntakeSpeed = -0.38;
+        public static final double outtakeTime = 0.5;
     }
     public static final class AlgaeArmConstants{
 

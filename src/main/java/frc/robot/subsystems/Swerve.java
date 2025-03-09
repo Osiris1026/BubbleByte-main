@@ -19,6 +19,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -199,25 +200,63 @@ public class Swerve extends SubsystemBase {
             mod.resetToAbsolute();
         }
     }
+
+    public void setPoseToReef(String reefpose){
+        // if(reefpose.toLowerCase().equals("a")){
+        //     setPose(new Pose2d(0, 0, getHeading()));
+        // }
+        // if(reefpose.toLowerCase().equals("b")){
+        //     setPose(new Pose2d(0, 0, getHeading()));
+        // }
+        if(reefpose.toLowerCase().equals("c")){
+            setPose(new Pose2d(3.65, 3, getHeading()));
+            SmartDashboard.putBoolean("posereefresetc", true);
+        }
+        if(reefpose.toLowerCase().equals("d")){
+            setPose(new Pose2d(4, 2.8, getHeading()));
+            SmartDashboard.putBoolean("posereefresetd", true);
+        }
+        if(reefpose.toLowerCase().equals("e")){
+            setPose(new Pose2d(5, 2.8, getHeading()));
+            SmartDashboard.putBoolean("posereefresete", true);
+        }
+        
+    }
+
     public void updatePoseLimelight(){
         Pose2d poseb = l_LimelightBackSubsystem.getBotPose2d();
         Pose2d posef = l_LimelightSubsystem.getBotPose2d();
-        if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0 && posef != null && posef.getX() != 0 && posef.getY() != 0){
-            setPose(new Pose2d((poseb.getX() + posef.getX())/2, (poseb.getY() + posef.getY())/2, getHeading()));
-        }else{
-            if(posef != null && posef.getX() != 0 && posef.getY() != 0){
-                setPose(new Pose2d(posef.getX(), posef.getY(), getHeading()));
-            }
-            if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0){
-                setPose(new Pose2d(poseb.getX(), poseb.getY(), getHeading()));
-            }
+        
+        SmartDashboard.putBoolean("Limelight poseUpF", false);
+        if(posef == null){
+            SmartDashboard.putBoolean("Limelight null", true);
         }
+        if(posef != null && posef.getX() != 0 && posef.getY() != 0){
+            SmartDashboard.putNumber("Limelight poseX", posef.getX());
+        SmartDashboard.putNumber("Limelight poseY", posef.getY());
+            setPose(new Pose2d(posef.getX(), posef.getY(), getHeading()));
+            SmartDashboard.putBoolean("Limelight poseUpF", true);
+        }
+        else if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0){
+            setPose(new Pose2d(poseb.getX(), poseb.getY(), getHeading()));
+            SmartDashboard.putBoolean("Limelight poseUpB", true);
+        }
+        // if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0 && posef != null && posef.getX() != 0 && posef.getY() != 0){
+        //     setPose(new Pose2d((poseb.getX() + posef.getX())/2, (poseb.getY() + posef.getY())/2, getHeading()));
+        // }else{
+        //     if(posef != null && posef.getX() != 0 && posef.getY() != 0){
+        //         setPose(new Pose2d(posef.getX(), posef.getY(), getHeading()));
+        //     }
+        //     if(poseb != null && poseb.getX() != 0 && poseb.getY() != 0){
+        //         setPose(new Pose2d(poseb.getX(), poseb.getY(), getHeading()));
+        //     }
+        // }
     }
 
     @Override
     public void periodic() {
         swerveOdometry.update(getGyroYaw(), getModulePositions());
-        updatePoseLimelight();
+        //updatePoseLimelight();
         
         SmartDashboard.putNumber("Acc",this.getAcc());
         SmartDashboard.putNumber("gyrow", gyro.getYaw());

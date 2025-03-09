@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.2,
-        "y": 1.9
+        "x": 5.0,
+        "y": 2.8
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.03680547723018,
-        "y": 2.0893872956085775
+        "x": 4.411676136363637,
+        "y": 2.2316193181818185
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.318087125296992,
-        "y": 2.5743262660088533
+        "x": 1.3751923076923072,
+        "y": 0.8669230769230774
       },
       "prevControl": {
-        "x": 6.185511668130404,
-        "y": 1.687354924754914
+        "x": 1.8310817307628895,
+        "y": 1.184593167248713
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,14 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Epose",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 7.0,
     "maxAcceleration": 2.3,
@@ -41,14 +48,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.3,
-    "rotation": 119.99999999999999
+    "velocity": 0.5,
+    "rotation": 53.384630372356085
   },
   "reversed": false,
-  "folder": "Start-Reef",
+  "folder": "Reef-CS",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 120.25643716352924
   },
   "useDefaultConstraints": true
 }
