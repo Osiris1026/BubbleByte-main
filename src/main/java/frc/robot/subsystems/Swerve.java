@@ -29,6 +29,7 @@ import frc.robot.SwerveModule;
  * Our main drive subsystem
  */
 public class Swerve extends SubsystemBase {
+    
     public SwerveDriveOdometry swerveOdometry;
     
     public SwerveModule[] swerveModules;
@@ -41,6 +42,7 @@ public class Swerve extends SubsystemBase {
         this.l_LimelightBackSubsystem = l_LimelightBackSubsystem;
         this.l_LimelightSubsystem = l_LimelightSubsystem;
         gyro = new AHRS( NavXComType.kMXP_SPI);
+        
         
         gyro.reset();
         try {
@@ -202,24 +204,63 @@ public class Swerve extends SubsystemBase {
     }
 
     public void setPoseToReef(String reefpose){
-        // if(reefpose.toLowerCase().equals("a")){
-        //     setPose(new Pose2d(0, 0, getHeading()));
-        // }
-        // if(reefpose.toLowerCase().equals("b")){
-        //     setPose(new Pose2d(0, 0, getHeading()));
-        // }
-        if(reefpose.toLowerCase().equals("c")){
-            setPose(new Pose2d(3.65, 3, getHeading()));
-            SmartDashboard.putBoolean("posereefresetc", true);
-        }
-        if(reefpose.toLowerCase().equals("d")){
-            setPose(new Pose2d(4, 2.8, getHeading()));
-            SmartDashboard.putBoolean("posereefresetd", true);
-        }
-        if(reefpose.toLowerCase().equals("e")){
-            setPose(new Pose2d(5, 2.8, getHeading()));
-            SmartDashboard.putBoolean("posereefresete", true);
-        }
+        var alliance = DriverStation.getAlliance();
+                    if (alliance.isPresent()) {
+                      if(alliance.get() == DriverStation.Alliance.Red){
+                        if(reefpose.toLowerCase().equals("c")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.cx, Constants.Swerve.fieldlengthY -Constants.Swerve.cy, getHeading()));//3.65, 3
+                            //SmartDashboard.putBoolean("posereefresetc", true);
+                        }
+                        if(reefpose.toLowerCase().equals("d")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.dx, Constants.Swerve.fieldlengthY - Constants.Swerve.dy, getHeading()));//4, 2.8
+                            //SmartDashboard.putBoolean("posereefresetd", true);
+                        }
+                        if(reefpose.toLowerCase().equals("e")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.ex, Constants.Swerve.fieldlengthY - Constants.Swerve.ey, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+                        if(reefpose.toLowerCase().equals("j")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.jx, Constants.Swerve.fieldlengthY - Constants.Swerve.jy, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+                        if(reefpose.toLowerCase().equals("k")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.kx, Constants.Swerve.fieldlengthY - Constants.Swerve.ky, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+                        if(reefpose.toLowerCase().equals("l")){
+                            setPose(new Pose2d(Constants.Swerve.fieldlengthX - Constants.Swerve.lx, Constants.Swerve.fieldlengthY - Constants.Swerve.ly, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+
+                      }else{
+                        if(reefpose.toLowerCase().equals("c")){
+                            setPose(new Pose2d(Constants.Swerve.cx, Constants.Swerve.cy, getHeading()));//3.65, 3
+                            //SmartDashboard.putBoolean("posereefresetc", true);
+                        }
+                        if(reefpose.toLowerCase().equals("d")){
+                            setPose(new Pose2d(Constants.Swerve.dx, Constants.Swerve.dy, getHeading()));//4, 2.8
+                            //SmartDashboard.putBoolean("posereefresetd", true);
+                        }
+                        if(reefpose.toLowerCase().equals("e")){
+                            setPose(new Pose2d(Constants.Swerve.ex, Constants.Swerve.ey, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+                        if(reefpose.toLowerCase().equals("j")){
+                            setPose(new Pose2d(Constants.Swerve.jx, Constants.Swerve.jy, getHeading()));//4, 2.8
+                            //SmartDashboard.putBoolean("posereefresetd", true);
+                        }
+                        if(reefpose.toLowerCase().equals("k")){
+                            setPose(new Pose2d(Constants.Swerve.kx, Constants.Swerve.ky, getHeading()));//4, 2.8
+                            //SmartDashboard.putBoolean("posereefresetd", true);
+                        }
+                        if(reefpose.toLowerCase().equals("l")){
+                            setPose(new Pose2d(Constants.Swerve.lx, Constants.Swerve.ly, getHeading()));//5, 2.8
+                            //SmartDashboard.putBoolean("posereefresete", true);
+                        }
+                      }
+                    }
+                    
+        
         
     }
 

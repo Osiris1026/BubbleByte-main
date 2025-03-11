@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.9686931818181814,
-        "y": 5.266463068181817
+        "x": 3.9,
+        "y": 5.18
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.4660570364946963,
-        "y": 5.623137066887671
+        "x": 3.0990253705340747,
+        "y": 5.807065357691932
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 7.15109375
       },
       "prevControl": {
-        "x": 1.8248011363636367,
-        "y": 6.82203125
+        "x": 1.7602832035195408,
+        "y": 6.829147637153389
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -52.12501634890185
+    "rotation": -54.0
   },
   "reversed": false,
   "folder": "Reef-CS",

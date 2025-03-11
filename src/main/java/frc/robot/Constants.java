@@ -91,6 +91,35 @@ public final class Constants {
 
         public static final SensorDirectionValue CANCODER_INVERT = FALCON_500_CONSTANTS.cancoderInvert;
 
+
+        public static final double fieldlengthX = 17.55;//(meters)
+        public static final double fieldlengthY = 8.05;//(meters)
+
+        public static final double ax = 0;
+        public static final double ay = 0;
+        public static final double bx = 0;
+        public static final double by = 0;
+        public static final double cx = 3.8;
+        public static final double cy = 2.950;
+        public static final double dx = 4.050;
+        public static final double dy = 2.790;
+        public static final double ex = 5.100;
+        public static final double ey = 2.9;
+        public static final double fx = 0;
+        public static final double fy = 0;
+        public static final double gx = 0;
+        public static final double gy = 0;
+        public static final double hx = 0;
+        public static final double hy = 0;
+        public static final double ix = 0;
+        public static final double iy = 0;
+        public static final double jx = 4.9;
+        public static final double jy = 5.27;
+        public static final double kx = 3.9;
+        public static final double ky = 5.180;
+        public static final double lx = 3.6;
+        public static final double ly = 5;
+        
         /**
          * Units: Volts
          */
