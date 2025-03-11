@@ -12,22 +12,22 @@ import frc.robot.subsystems.AlgaeArmSubsystem;
 import frc.robot.subsystems.AlgaeIntakeSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class AlgaeArmPID extends Command {
-  
-  private AlgaeArmSubsystem a_AlgaeArmSubsystem;
+public class AlgaeIntakePID extends Command {
 
+  
+  private AlgaeIntakeSubsystem a_AlgaeIntakeSubsystem;
+
+  //private final double = a_AlgaeIntakeSubsystem.getAngle();
   private PIDController pid = new PIDController(
-      Constants.AlgaeArmConstants.kP, 
-      Constants.AlgaeArmConstants.kI, 
-      Constants.AlgaeArmConstants.kD);
+      Constants.AlgaeArmConstants.kP/20, 
+      Constants.AlgaeArmConstants.kI/20, 
+      Constants.AlgaeArmConstants.kD/20);
   /** Creates a new ClimbPID. */
-  public AlgaeArmPID(AlgaeArmSubsystem subsytem, double Setpoint) {
-    this.a_AlgaeArmSubsystem = subsytem;
-    
+  public AlgaeIntakePID(AlgaeIntakeSubsystem subsystem, double Setpoint) {
+    this.a_AlgaeIntakeSubsystem = subsystem;
     this.pid.setSetpoint(Setpoint);
     this.pid.setTolerance(Constants.AlgaeArmConstants.Tolerance );
-    addRequirements(a_AlgaeArmSubsystem);
-    
+    addRequirements(a_AlgaeIntakeSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -38,18 +38,16 @@ public class AlgaeArmPID extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double pose = a_AlgaeArmSubsystem.getAngle();
+    double pose = a_AlgaeIntakeSubsystem.getAngle();
     double calculated = pid.calculate(pose);
-    a_AlgaeArmSubsystem.setSpeed(calculated);
-    
-    SmartDashboard.putNumber("ClimbPID", calculated);
+    a_AlgaeIntakeSubsystem.setSpeed(calculated);
+    SmartDashboard.putNumber("testskip", calculated);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    a_AlgaeArmSubsystem.setSpeed(0);
-    
+    a_AlgaeIntakeSubsystem.setSpeed(0);
   }
 
   // Returns true when the command should end.

@@ -48,6 +48,9 @@ public class AlgaeIntakeSubsystem extends SubsystemBase {
   public void setSpeed(double speed) {
     Motor.set(speed);
   }
+  public double getAngle() {
+    return Motor.get();
+  }
 
   
 

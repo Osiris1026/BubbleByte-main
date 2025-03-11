@@ -108,7 +108,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
   public Pose2d getBotPose2d(){
     double[] pose = getBotPoseTeamRelative();
-    Pose2d botpose = pose.equals(new double[7]) || !IsTargetAvailable()? null: new Pose2d(pose[0], pose[2], new Rotation2d(pose[5]));
+    Pose2d botpose = pose.equals(new double[7]) || !IsTargetAvailable()? null: new Pose2d(pose[0], pose[1], new Rotation2d(pose[5]));
     return botpose;
   }
 

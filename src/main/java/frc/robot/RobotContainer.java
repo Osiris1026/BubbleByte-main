@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.AlgaeArmPID;
+import frc.robot.commands.AlgaeIntakePID;
 import frc.robot.commands.AlignCommand;
 import frc.robot.commands.AutoFollowCommand;
 import frc.robot.commands.ClimbPID;
@@ -151,6 +152,14 @@ public class RobotContainer {
     public Command AlgaeGroundIntake_coDriver(){
         return new ParallelCommandGroup(
             new AlgaeArmPID(a_AlgaeArmSubsystem, Constants.AlgaeArmConstants.GroundPose),
+            a_AlgaeIntakeSubsystem.run(()-> Constants.AlgaeIntakeConstants.IntakeSpeed)
+        );
+        
+    }
+
+    public Command AlgaeSkip(){
+        return new ParallelCommandGroup(
+            new AlgaeArmPID(a_AlgaeArmSubsystem, Constants.AlgaeArmConstants.DefaultPose),
             a_AlgaeIntakeSubsystem.run(()-> Constants.AlgaeIntakeConstants.IntakeSpeed)
         );
         
@@ -438,7 +447,7 @@ public class RobotContainer {
         c_ClimbSubsystem.setDefaultCommand(c_ClimbSubsystem.run(()-> -codriver.getRawAxis(0) * Constants.ClimberConstants.MaxLiftSpeed));
         c_CoralIntakeSubsystem.setDefaultCommand(c_CoralIntakeSubsystem.run(()-> -codriver.getRawAxis(2)));
         a_AlgaeIntakeSubsystem.setDefaultCommand(a_AlgaeIntakeSubsystem.run(()-> -codriver.getRawAxis(3)));
-        e_ElevatorSubsytem.setDefaultCommand(e_ElevatorSubsytem.run((()-> -codriver.getRawAxis(5))));
+        e_ElevatorSubsytem.setDefaultCommand(e_ElevatorSubsytem.run((()-> -codriver.getRawAxis(5) + Constants.ElevatorConstants.StallSpeed )));
         
 
         configureButtonBindings();

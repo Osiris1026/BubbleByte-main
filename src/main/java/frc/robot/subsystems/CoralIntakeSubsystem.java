@@ -19,6 +19,7 @@ import java.util.function.DoubleSupplier;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.*;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 public class CoralIntakeSubsystem extends SubsystemBase {
   private SparkMax leftMotor = new SparkMax(Constants.CoralIntakeConstants.LeftMotorID, MotorType.kBrushless);
@@ -34,8 +35,11 @@ public class CoralIntakeSubsystem extends SubsystemBase {
 
     leftConfig.inverted(Constants.CoralIntakeConstants.LeftMotorInverted);
     rightConfig.inverted(Constants.CoralIntakeConstants.RightMotorInverted);
+    
     leftConfig.smartCurrentLimit(20);
     rightConfig.smartCurrentLimit(20);
+    leftConfig.idleMode(IdleMode.kBrake);
+    rightConfig.idleMode(IdleMode.kBrake);
     //leftConfig.voltageCompensation(0);
     
     leftMotor.configure(leftConfig, Constants.CoralIntakeConstants.Reset, Constants.CoralIntakeConstants.Persist);
