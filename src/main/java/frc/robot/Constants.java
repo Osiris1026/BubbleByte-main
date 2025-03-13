@@ -226,7 +226,7 @@ public final class Constants {
         public static final InvertedValue MotorInverted = InvertedValue.Clockwise_Positive;
         public static final NeutralModeValue LiftMotorMode = NeutralModeValue.Brake;
         
-        public static final double MaxLiftSpeed = 0.37;
+        public static final double MaxLiftSpeed = 0.45;
 
         public static final double kP = 0.07;
         public static final double kI = 0.0;
@@ -466,12 +466,12 @@ public final class Constants {
     }
     public static final class AlignConstants{
 
-        public static final double rightRY = 3;
-        public static final double rightX = -0.12;
+        public static final double rightRY = 2;
+        public static final double rightX = -0.11;
         public static final double rightZ = .52;
 
         public static final double leftRY = 0;
-        public static final double leftX = 0.20;
+        public static final double leftX = 0.18;
         public static final double leftZ = 0.52;
         public static double centerRY = 1;
         public static double centerTX = 0.0;
