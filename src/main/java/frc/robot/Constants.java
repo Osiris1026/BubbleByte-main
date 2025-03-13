@@ -367,7 +367,7 @@ public final class Constants {
         public static final InvertedValue MotorInverted = InvertedValue.CounterClockwise_Positive;
         public static final NeutralModeValue MotorMode = NeutralModeValue.Brake;
         public static final int STATOR_CURRENT_LIMIT = 70;
-        public static final int CURRENT_LIMIT = 40;
+        public static final int CURRENT_LIMIT = 60;
         public static final boolean ENABLE_CURRENT_LIMIT = true;
         public static final boolean ENABLE_STATOR_CURRENT_LIMIT = true;
         public static final int CURRENT_THRESHOLD = 30;
@@ -386,7 +386,7 @@ public final class Constants {
         public static final double L3Pose = 20.5;
         public static final double L4Pose = 29.5;
         public static final double GearRatio = 1;//6.88:1
-        public static final double StallSpeed = 0.34;
+        public static final double StallSpeed = 0.30;
         public static final double MaxSpeed = 0.3;
         public static final double MinSpeed = -0.45;
         public static final double ClimbLimit = -1;
@@ -396,8 +396,8 @@ public final class Constants {
         public static final double A1Timeout = 1.2;
         public static final double A2Timeout = 2;
 
-        public static final double MaxVelocity = 20;
-        public static final double MaxAcceleration = 87;
+        public static final double MaxVelocity = 50;
+        public static final double MaxAcceleration = 100;
         public static final double L4Timeout = 2.1;
         public static final double L3Timeout = 1.7;
         public static final double L2Timeout = 1.1;
