@@ -431,9 +431,9 @@ public class RobotContainer {
         NamedCommands.registerCommand("Cpose", new InstantCommand(()-> s_Swerve.setPoseToReef("c")));
         NamedCommands.registerCommand("Dpose", new InstantCommand(()-> s_Swerve.setPoseToReef("d")));
         NamedCommands.registerCommand("Epose", new InstantCommand(()-> s_Swerve.setPoseToReef("e")));
-        NamedCommands.registerCommand("Jpose", new InstantCommand(()-> s_Swerve.setPoseToReef("c")));
-        NamedCommands.registerCommand("Kpose", new InstantCommand(()-> s_Swerve.setPoseToReef("d")));
-        NamedCommands.registerCommand("Lpose", new InstantCommand(()-> s_Swerve.setPoseToReef("e")));
+        NamedCommands.registerCommand("Jpose", new InstantCommand(()-> s_Swerve.setPoseToReef("j")));
+        NamedCommands.registerCommand("Kpose", new InstantCommand(()-> s_Swerve.setPoseToReef("k")));
+        NamedCommands.registerCommand("Lpose", new InstantCommand(()-> s_Swerve.setPoseToReef("l")));
 
         s_Swerve.setDefaultCommand(new TeleopSwerve(s_Swerve, 
         ()-> -driver.getRawAxis(1), 

@@ -255,7 +255,7 @@ public final class Constants {
         public static final double DefaultPose = 0;
 
 
-        public static final double OutPose = 90;
+        public static final double OutPose = 100;
 
         public static final double InPose = -120;
 
@@ -391,10 +391,10 @@ public final class Constants {
         public static final double MinSpeed = -0.45;
         public static final double ClimbLimit = -1;
         public static final double L0Pose = 5.4;
-        public static final double A1Pose = 7;
-        public static final double A2Pose = 14;
+        public static final double A1Pose = 6.5;
+        public static final double A2Pose = 13.0;
         public static final double A1Timeout = 1.2;
-        public static final double A2Timeout = 2;
+        public static final double A2Timeout = 0.5;
 
         public static final double MaxVelocity = 50;
         public static final double MaxAcceleration = 100;
@@ -433,7 +433,7 @@ public final class Constants {
         public static final double OuttakeSpeed = -0.3;
         public static final ResetMode Reset = ResetMode.kResetSafeParameters;
         public static final PersistMode Persist = PersistMode.kNoPersistParameters;
-        public static final double IntakeSpeed = -0.38;
+        public static final double IntakeSpeed = -0.36;
         public static final double outtakeTime = 0.5;
     }
     public static final class AlgaeArmConstants{
@@ -450,7 +450,7 @@ public final class Constants {
         public static final double ForwardLimit = 15;
         public static final double ReverseLimit = 1.8;
         public static final double DefaultPose = 1.8;
-        public static final double ReefPose = 4.8;
+        public static final double ReefPose = 7;
         public static final double IntakeSpeed = 0.4;
         public static final double GroundPose = 14.6;//15;//4.8
         public static final double OuttakePose = 3;
@@ -467,11 +467,11 @@ public final class Constants {
     public static final class AlignConstants{
 
         public static final double rightRY = 2;
-        public static final double rightX = -0.11;
+        public static final double rightX = -0.155;
         public static final double rightZ = .52;
 
         public static final double leftRY = 0;
-        public static final double leftX = 0.18;
+        public static final double leftX = 0.2;
         public static final double leftZ = 0.52;
         public static double centerRY = 1;
         public static double centerTX = 0.0;
